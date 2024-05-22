@@ -1,0 +1,184 @@
+@import url(./reset.css);
+
+:root {
+    --yellow: #fab730;
+    --pink: #e82b5e;
+    --magenta: #bb1c9d;
+    --orange: #dd6c2d;
+    --turquoise: #2c9895;
+    --blue: #5151e1;
+    --purple: #8b4fd1;
+    --teal: #087c7c;
+    --font-color: #1a202c ;
+    --border-color: #c8c9d1;
+}
+
+body {
+    padding: 3rem 0;
+}
+
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.filterInputs {
+    display: grid;
+    grid-template-columns: 15rem 15rem 15rem;
+    gap: 1rem;
+}
+
+input, select {
+    font-size: 1.25rem;
+    border-radius: 1rem;
+    height: 2rem;
+    border: solid 2px var(--border-color);
+    padding: .25rem .75rem;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border: solid 2px #000;
+}
+
+select {
+    height: calc(2rem + 12px);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.filterButton {
+    height: calc(2rem + 10px);
+    width: 5rem;
+    background-color: #FFF;
+    color: var(--font-color);
+    border-radius: 1rem; 
+    border: solid 2px var(--border-color);
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    padding: 0 5rem;
+}
+
+.jornadasItens, .mapaItens, .pontoItens {
+    display: flex;
+    flex-direction: column;
+}
+
+.jornadaItem,.pontoItem {
+    margin: 1rem 2rem; 
+}
+
+.jornadaData{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    border: solid 1px var(--border-color);
+    border-left: none;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    width: 100%;
+    padding: .5rem;
+}
+
+.jornadaTitle {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.jornadaInfo {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: end;
+    gap: 1rem;
+    height: 100%;
+}
+
+.jornadaDesc, .jornadaMembers {
+    font-size: .90rem;
+    color: #A7A7A7;
+}
+
+.jornadaMembers {
+    text-align: right;
+}
+
+.mapaItens {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 2rem;
+    align-items: start;
+    justify-items: center; */
+}
+
+.mapaItem { 
+    border: solid 1px var(--border-color);
+    border-radius: .5rem;
+    padding: .5rem;
+    height: 62px;
+    margin: 1rem 2rem;
+}
+
+.mapaTitle {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.mapaItem, .jornadaItem, .pontoItem {
+    cursor: pointer;
+}
+
+.jornadaID, .mapaID, .pontoID {
+    display: none;
+}
+
+.pontoItem, .jornadaItem {
+    display: flex;
+    height: 5rem;
+}
+
+.colorCode {
+    width: .5rem;
+}
+
+.yellow {
+    background-color: var(--yellow);
+}
+
+.pink {
+    background-color: var(--pink);
+}
+
+.magenta {
+    background-color: var(--magenta);
+}
+
+.orange {
+    background-color: var(--orange);
+}
+
+.turquoise {
+    background-color: var(--turquoise);
+}
+
+.blue {
+    background-color: var(--blue);
+}
+
+.purple {
+    background-color: var(--purple);
+}
+
+.teal {
+    background-color: var(--teal);
+}

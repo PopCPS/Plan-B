@@ -9,12 +9,13 @@
 </head>
 <body>
     <form class="loginForm" action="./main.html">
-        <div>
+        <span id="errorMessage" class="hidden">Credenciais invalidas</span>
+        <div class="formSection">
             <label for="email">Email</label>
             <span class="emailError errorMessage hidden">*Email invalido</span>
             <input id="email" class="emailInput" type="email">
         </div>
-        <div>
+        <div class="formSection">
             <label for="password">Senha</label>
             <span class="passwordError errorMessage hidden">*Senha incorreta</span>
             <input id="password" class="passwordInput" type="password">

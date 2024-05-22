@@ -4,20 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-    <div class="jornadasDiv">
+    <div class="mainDiv">
         <div class="nav">
-            <input placeholder="tamanho" class="size" type="text">
-            <select name="sort" id="sort">
-                <option value="asc">Ascendente</option>
-                <option value="desc">Descendente</option>
-            </select>
-            <button id="filter">Filtrar</button>
+            <div class="filterInputs">
+                <input placeholder="Título" id="title" type="text">
+                <input placeholder="Cor" id="color" type="text">
+                <input placeholder="Visibilidade" id="visibility" type="text">
+                <input placeholder="Seu cargo" id="role" type="text">
+                <input placeholder="Tamanho" id="size" class type="text">
+                <select name="sort" id="sort">
+                    <option value="ASC">Ascendente</option>
+                    <option value="DESC">Descendente</option>
+                </select>
+            </div>
+            <button id="filter" class="filterButton">Filtrar</button>
         </div>
-        <div class="jornadasItens">
-
+        <div class="contentGrid">
+            <div class="jornadasItens"></div>
+            <div class="mapaItens"></div>
+            <div class="pontoItens"></div>
         </div>
     </div>
 </body>

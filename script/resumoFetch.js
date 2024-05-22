@@ -1,5 +1,5 @@
-function getMapas(id) {
-    const apiUrl = `https://api.strateegia.digital/projects/v1/project/${id}`;
+function getResumo(divergenceID, questionID) {
+    const apiUrl = `https://api.strateegia.digital/projects/v1/divergence-point/${divergenceID}/question/${questionID}/gptsummary?page=0&size=1`;
     const token = sessionStorage.getItem('access_token');
     return fetch(apiUrl, {
         headers: {
@@ -18,4 +18,4 @@ function getMapas(id) {
     });
 }
 
-export { getMapas }
+export { getResumo }

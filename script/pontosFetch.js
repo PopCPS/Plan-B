@@ -1,5 +1,5 @@
-function getMapas(id) {
-    const apiUrl = `https://api.strateegia.digital/projects/v1/project/${id}`;
+function getPontos(id) {
+    const apiUrl = `https://api.strateegia.digital/projects/v1/map/${id}/divergence-point?page=0&size=999&sort=string`;
     const token = sessionStorage.getItem('access_token');
     return fetch(apiUrl, {
         headers: {
@@ -18,4 +18,4 @@ function getMapas(id) {
     });
 }
 
-export { getMapas }
+export { getPontos }
