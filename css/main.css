@@ -63,6 +63,16 @@ select {
     border: solid 2px var(--border-color);
 }
 
+.backButton {
+    background-color: #FFF;
+    border: var(--border-color);
+    width: 80px;
+}
+
+.backButtonImg {
+    height: 42px;
+}
+
 .contentGrid {
     display: grid;
     grid-template-columns: 2fr 1fr 2fr;
@@ -138,9 +148,9 @@ select {
     cursor: pointer;
 }
 
-.jornadaID, .mapaID, .pontoID {
+/* .jornadaID, .mapaID, .pontoID, .pontoMapID {
     display: none;
-}
+} */
 
 .pontoItem, .jornadaItem {
     display: flex;

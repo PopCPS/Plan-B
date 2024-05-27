@@ -4,18 +4,36 @@ import { getPontos } from "./pontosFetch.js";
 import { getResumo } from "./resumoFetch.js";
 
 const filtrarJornadas = document.querySelector('#filter')
-const jornadasList = document.querySelector('.jornadasItens')
-const mapasList = document.querySelector('.mapaItens')
-const pontosList = document.querySelector('.pontoItens')
-const resumoArray = []
+const renderedDataList = document.querySelector('.list')
+const backButton = document.querySelector('.backButton')
+const list = document.querySelector('.list')
+
+function previousPage() {
+    if(list.classList.contains('jornadas')){
+        window.location.href = '../index.html'
+    }else if(list.classList.contains('mapas')){
+        const size = document.querySelector('#size').value
+        const sort = document.querySelector('#sort').value
+        loadJornadas(size, sort)
+        list.classList.remove('mapas')
+        list.classList.add('jornadas')
+    }else if(list.classList.contains('pontos')){
+        const previousMapId = document.querySelector('.pontoMapID').innerText
+        loadMapas(previousMapId)
+        list.classList.remove('pontos')
+        list.classList.add('mapas')
+    }
+}
 
 function loadJornadas(size, sort) {
-    mapasList.innerHTML = ''
-    pontosList.innerHTML = ''
+    renderedDataList.innerHTML = ''
     getJornadas(0, size, sort)
         .then(data => {
+            if(!list.classList.contains('jornadas')){
+                list.classList.add('jornadas')
+            }
             data.content.forEach((e)=>{
-                jornadasList.innerHTML += `
+                renderedDataList.innerHTML += `
                     <div class="jornadaItem">
                         <div class="colorCode ${e.color.toLowerCase()}"></div>
                         <div class="jornadaData">
@@ -33,12 +51,15 @@ function loadJornadas(size, sort) {
 }
 
 function loadMapas(id) {
-    mapasList.innerHTML = ''
-    pontosList.innerHTML = ''
+    renderedDataList.innerHTML = ''
     getMapas(id)
         .then(data => {
+            if(!list.classList.contains('mapas')){
+                list.classList.remove('jornadas')
+                list.classList.add('mapas')
+            }
             data.maps.forEach((e)=>{
-                mapasList.innerHTML += `
+                renderedDataList.innerHTML += `
                 <div class="mapaItem">
                     <h2 class="mapaTitle">${e.title.length > 11 ? e.title.substring(0, 11) + "..." : e.title}</h2>
                     <p class="mapaID">${e.id}</p>
@@ -49,12 +70,15 @@ function loadMapas(id) {
 }
 
 function loadPontos(id) {
-    pontosList.innerHTML = ''
+    renderedDataList.innerHTML = ''
     getPontos(id)
         .then(data =>{ 
+            if(!list.classList.contains('pontos')){
+                list.classList.remove('mapas')
+                list.classList.add('pontos')
+            }
             data.content.forEach((e)=>{
-                console.log(e)
-                pontosList.innerHTML += `
+                renderedDataList.innerHTML += `
                     <div class="pontoItem">
                         <div class="colorCode ${e.tool.color.toLowerCase()}"></div>
                         <div class="jornadaData">
@@ -64,6 +88,7 @@ function loadPontos(id) {
                                 <p class="jornadaMembers">Questões: ${e.tool.questions.length}</p>
                             </div>
                             <p class="pontoID">${e.id}</p>
+                            <p class="pontoMapID">${e.map_id}</p>
                         </div>
                     </div>
                 `
@@ -74,11 +99,13 @@ function loadPontos(id) {
 loadJornadas(0, 'ASC')
 
 filtrarJornadas.addEventListener('click', ()=>{
-    jornadasList.innerHTML = ''
+    renderedDataList.innerHTML = ''
     const size = document.querySelector('#size').value
     const sort = document.querySelector('#sort').value
     loadJornadas(size, sort)
 })
+
+backButton.addEventListener('click', previousPage)
 
 document.addEventListener('click', (e)=>{
     const jornada = e.target.closest('.jornadaItem')
@@ -94,21 +121,22 @@ document.addEventListener('click', (e)=>{
         loadPontos(pointID)
     }
     if(ponto){
-        getPontos(ponto.id)
+        getPontos(document.querySelector('.pontoMapID').innerText)
             .then((data)=>{
                 const idDoPonto = ponto.querySelector('.pontoID').innerText
                 data.content.forEach((pontoSelecionado)=>{
                     if(idDoPonto == pontoSelecionado.id){
                         pontoSelecionado.tool.questions.forEach((questaoSelecionada)=>{
+                            console.log(pontoSelecionado.id, questaoSelecionada.id)
                             getResumo(pontoSelecionado.id, questaoSelecionada.id)
                                 .then((data)=>{
-                                    console.log('ok')
+                                    console.log(data)
                                 })
-                        })
-                    }
-                })
-            }
-        )
+                            })
+                        }
+                    })
+                }
+            )
+        }
     }
-})
-
+)

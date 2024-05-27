@@ -27,7 +27,7 @@ submit.addEventListener('click', async function formValidation(e) {
         console.log('Token:', data);
           window.sessionStorage.setItem('access_token', data.access_token)
           window.sessionStorage.setItem('refresh_token', data.refresh_token)
-          window.location.href = '../pages/main.html'
+          window.location.href = '../main.html'
         })
         .catch(error => {
         console.error('Error:', error);
