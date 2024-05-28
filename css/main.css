@@ -148,9 +148,9 @@ select {
     cursor: pointer;
 }
 
-/* .jornadaID, .mapaID, .pontoID, .pontoMapID {
+.jornadaID, .mapaID, .pontoID, .pontoMapID {
     display: none;
-} */
+}
 
 .pontoItem, .jornadaItem {
     display: flex;

@@ -7,19 +7,17 @@ const filtrarJornadas = document.querySelector('#filter')
 const renderedDataList = document.querySelector('.list')
 const backButton = document.querySelector('.backButton')
 const list = document.querySelector('.list')
+let selectedJourneyID = ''
 
 function previousPage() {
-    if(list.classList.contains('jornadas')){
-        window.location.href = '../index.html'
-    }else if(list.classList.contains('mapas')){
+    if(list.classList.contains('mapas')){
         const size = document.querySelector('#size').value
         const sort = document.querySelector('#sort').value
         loadJornadas(size, sort)
         list.classList.remove('mapas')
         list.classList.add('jornadas')
     }else if(list.classList.contains('pontos')){
-        const previousMapId = document.querySelector('.pontoMapID').innerText
-        loadMapas(previousMapId)
+        loadMapas(selectedJourneyID)
         list.classList.remove('pontos')
         list.classList.add('mapas')
     }
@@ -52,6 +50,7 @@ function loadJornadas(size, sort) {
 
 function loadMapas(id) {
     renderedDataList.innerHTML = ''
+    selectedJourneyID = id
     getMapas(id)
         .then(data => {
             if(!list.classList.contains('mapas')){
@@ -127,14 +126,13 @@ document.addEventListener('click', (e)=>{
                 data.content.forEach((pontoSelecionado)=>{
                     if(idDoPonto == pontoSelecionado.id){
                         pontoSelecionado.tool.questions.forEach((questaoSelecionada)=>{
-                            console.log(pontoSelecionado.id, questaoSelecionada.id)
                             getResumo(pontoSelecionado.id, questaoSelecionada.id)
                                 .then((data)=>{
                                     console.log(data)
                                 })
                             })
                         }
-                    })
+                    })  
                 }
             )
         }
