@@ -6,7 +6,9 @@ import { getResumo } from "./resumoFetch.js";
 const filtrarJornadas = document.querySelector('#filter')
 const renderedDataList = document.querySelector('.list')
 const backButton = document.querySelector('.backButton')
+const backButtonImg = document.querySelector('.backButtonImg')
 const list = document.querySelector('.list')
+const listTitle = document.querySelector('.listTitle')
 let selectedJourneyID = ''
 
 function previousPage() {
@@ -16,16 +18,21 @@ function previousPage() {
         loadJornadas(size, sort)
         list.classList.remove('mapas')
         list.classList.add('jornadas')
+        listTitle.innerText = 'Jornadas'
+        backButtonImg.classList.add('blockedBackButton')
+        backButton.classList.add('blockedBackButton')
     }else if(list.classList.contains('pontos')){
         loadMapas(selectedJourneyID)
         list.classList.remove('pontos')
         list.classList.add('mapas')
+        listTitle.innerText = 'Mapas'
     }
 }
 
-function loadJornadas(size, sort) {
+function loadJornadas(size, sort, title, color, visibility, projectRoles) {
     renderedDataList.innerHTML = ''
-    getJornadas(0, size, sort)
+    listTitle.innerText = 'Jornadas'
+    getJornadas(0, size, sort, title, color, visibility, projectRoles)
         .then(data => {
             if(!list.classList.contains('jornadas')){
                 list.classList.add('jornadas')
@@ -51,6 +58,9 @@ function loadJornadas(size, sort) {
 function loadMapas(id) {
     renderedDataList.innerHTML = ''
     selectedJourneyID = id
+    listTitle.innerText = 'Mapas'
+    backButtonImg.classList.remove('blockedBackButton')
+    backButton.classList.remove('blockedBackButton')
     getMapas(id)
         .then(data => {
             if(!list.classList.contains('mapas')){
@@ -70,6 +80,7 @@ function loadMapas(id) {
 
 function loadPontos(id) {
     renderedDataList.innerHTML = ''
+    listTitle.innerText = 'Pontos'
     getPontos(id)
         .then(data =>{ 
             if(!list.classList.contains('pontos')){
@@ -101,7 +112,12 @@ filtrarJornadas.addEventListener('click', ()=>{
     renderedDataList.innerHTML = ''
     const size = document.querySelector('#size').value
     const sort = document.querySelector('#sort').value
-    loadJornadas(size, sort)
+    const title = document.querySelector('#title').value
+    const color = document.querySelector('#color').value
+    const visibility = document.querySelector('#visibility').value
+    const projectRoles = document.querySelector('#projectRoles').value
+    console.log(color)
+    loadJornadas(size, sort, title, color, visibility, projectRoles)
 })
 
 backButton.addEventListener('click', previousPage)

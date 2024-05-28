@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .filterInputs {
@@ -67,10 +67,22 @@ select {
     background-color: #FFF;
     border: var(--border-color);
     width: 80px;
+    cursor: pointer;
 }
 
 .backButtonImg {
     height: 42px;
+}
+
+.blockedBackButton {
+    fill: var(--border-color);
+    cursor: default;
+}
+
+.listTitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
 }
 
 .contentGrid {

@@ -1,5 +1,21 @@
-async function getJornadas(page, size, sort) {
-    const apiUrl = `https://api.strateegia.digital/projects/v1/project/summary?page=${page}&size=${size}&sort=${sort}`;
+async function getJornadas(page, size, sort, title, color, visibility, projectRoles) {
+    let apiUrl = `https://api.strateegia.digital/projects/v1/project/summary?`;
+
+    if (title != '') {
+        apiUrl += `title=${title}&`;
+    }
+    if (color != '') {
+        apiUrl += `color=${color}&`;
+    }
+    if (visibility != '') {
+        apiUrl += `visibility=${visibility}&`;
+    }
+    if (projectRoles != '') {
+        apiUrl += `projectRoles=${projectRoles}&`;
+    }
+
+    apiUrl += `page=${page}&size=${size}&sort=${sort}`;
+    
     const token = sessionStorage.getItem('access_token');
     return fetch(apiUrl, {
         headers: {

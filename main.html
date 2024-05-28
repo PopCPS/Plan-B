@@ -9,12 +9,37 @@
 <body>
     <div class="mainDiv">
         <div class="nav">
-            <button class="backButton"><img class="backButtonImg" src="../img/navigation-back-arrow-svgrepo-com.svg" alt="Botão de volter"></button>
+            <button class="backButton blockedBackButton">
+                <svg class="backButtonImg blockedBackButton" fill="#000000" viewBox="0 0 52 52" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg">
+                    <g data-name="Group 132" id="Group_132">
+                        <path d="M38,52a2,2,0,0,1-1.41-.59l-24-24a2,2,0,0,1,0-2.82l24-24a2,2,0,0,1,2.82,0,2,2,0,0,1,0,2.82L16.83,26,39.41,48.59A2,2,0,0,1,38,52Z"/>
+                    </g>
+                </svg>
+            </button>
             <div class="filterInputs">
                 <input placeholder="Título" id="title" type="text">
-                <input placeholder="Cor" id="color" type="text">
-                <input placeholder="Visibilidade" id="visibility" type="text">
-                <input placeholder="Seu cargo" id="role" type="text">
+                <select name="color" id="color">
+                    <option value="">Cor</option>
+                    <option value="PURPLE">Roxo</option>
+                    <option value="BLUE">Azul</option>
+                    <option value="TEAL">Verde</option>
+                    <option value="ORANGE">Laranja</option>
+                    <option value="MAGENTA">Magenta</option>
+                    <option value="PINK">Rosa</option>
+                    <option value="YELLOW">Amarelo</option>
+                </select>
+                <select name="visibility" id="visibility">
+                    <option value="">Visibilidade</option>
+                    <option value="PRIVATE">Privado</option>
+                    <option value="PUBLIC">Publico</option>
+                </select>
+                <select name="projectRoles" id="projectRoles">
+                    <option value="">Seu cargo</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="MENTOR">Mentor</option>
+                    <option value="INVESTOR">Investidor</option>
+                    <option value="INNOVATOR">Inovador</option>
+                </select>
                 <input placeholder="Tamanho" id="size" class type="text">
                 <select name="sort" id="sort">
                     <option value="ASC">Ascendente</option>
@@ -29,3 +54,5 @@
 </body>
 <script type="module" src="../script/main.js"></script>
 </html>
+
+<!-- <img class="backButtonImg" src="../img/navigation-back-arrow-svgrepo-com.svg" alt="Botão de voltar"> -->
