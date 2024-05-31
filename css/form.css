@@ -1,3 +1,5 @@
+
+@import url(./variables.css);
 .hidden {
     display: none;
 }
@@ -19,6 +21,10 @@ body {
     flex-direction: column;
 }
 
+.loginForm {
+    align-items: center;
+}
+
 .formSection {
     gap: 1rem;
 }
@@ -34,6 +40,10 @@ input {
     border: solid 2px var(--border-color);
     padding: .25rem .75rem;
     width: 20rem;
+}
+
+.submit {
+    width: 10rem;
 }
 
 input:-webkit-autofill,

@@ -2,6 +2,7 @@ import { getJornadas } from "./jornadasFetch.js";
 import { getMapas } from "./mapasFetch.js";
 import { getPontos } from "./pontosFetch.js";
 import { getResumo } from "./resumoFetch.js";
+import { getComments } from "./respostasFetch.js";
 
 const filtrarJornadas = document.querySelector('#filter')
 const renderedDataList = document.querySelector('.list')
@@ -15,7 +16,7 @@ function previousPage() {
     if(list.classList.contains('mapas')){
         const size = document.querySelector('#size').value
         const sort = document.querySelector('#sort').value
-        loadJornadas(size, sort)
+        loadJornadas(0, 'ASC' , '', '', '', '')
         list.classList.remove('mapas')
         list.classList.add('jornadas')
         listTitle.innerText = 'Jornadas'
@@ -106,7 +107,7 @@ function loadPontos(id) {
         })
 }
 
-loadJornadas(0, 'ASC')
+loadJornadas(0, 'ASC' , '', '', '', '')
 
 filtrarJornadas.addEventListener('click', ()=>{
     renderedDataList.innerHTML = ''
@@ -143,10 +144,17 @@ document.addEventListener('click', (e)=>{
                     if(idDoPonto == pontoSelecionado.id){
                         pontoSelecionado.tool.questions.forEach((questaoSelecionada)=>{
                             getResumo(pontoSelecionado.id, questaoSelecionada.id)
+                                .then((summaryData)=>{
+                                    //console.log(summaryData)
+                                })
+
+                            })
+                            console.log(pontoSelecionado)
+                            getComments(pontoSelecionado.id)
                                 .then((data)=>{
                                     console.log(data)
                                 })
-                            })
+
                         }
                     })  
                 }
@@ -154,3 +162,13 @@ document.addEventListener('click', (e)=>{
         }
     }
 )
+
+                                       // getComments(pontoSelecionado.id)
+                                        //     .then((commentsData)=>{
+                                        //         if(commentsData[i].id == summaryData.question_id)
+                                        //         console.log(commentsData[i].comments)
+                                        //     })
+                                    // getComments(pontoSelecionado.id)
+                                    //     .then((commentsData)=>{
+                                    //         console.log(commentsData)
+                                    //     })

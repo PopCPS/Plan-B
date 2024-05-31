@@ -1,17 +1,5 @@
 @import url(./reset.css);
-
-:root {
-    --yellow: #fab730;
-    --pink: #e82b5e;
-    --magenta: #bb1c9d;
-    --orange: #dd6c2d;
-    --turquoise: #2c9895;
-    --blue: #5151e1;
-    --purple: #8b4fd1;
-    --teal: #087c7c;
-    --font-color: #1a202c ;
-    --border-color: #c8c9d1;
-}
+@import url(./variables.css);
 
 body {
     padding: 3rem 0;
